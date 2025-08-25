@@ -344,6 +344,25 @@
 
  
                     </form>
+                    <script>
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault(); // stop default form submission
+    var form = e.target;
+
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form)
+    })
+    .then(response => response.text())
+    .then(() => {
+        form.reset(); // clear the fields
+        form.querySelector("button").disabled = true; // disable resubmit
+        document.querySelector(".thankyou_message").style.display = "block"; // show thank-you
+    })
+    .catch(error => console.error("Error!", error));
+});
+</script>
+
                </div>
 
           </div>
