@@ -344,9 +344,9 @@
 
  
                     </form>
-                    <script>
+<script>
 document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault(); // stop default form submission
+    e.preventDefault(); // stop default page reload
     var form = e.target;
 
     fetch(form.action, {
@@ -355,13 +355,17 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
     })
     .then(response => response.text())
     .then(() => {
-        form.reset(); // clear the fields
-        form.querySelector("button").disabled = true; // disable resubmit
-        document.querySelector(".thankyou_message").style.display = "block"; // show thank-you
+        form.reset(); // clear fields
+        form.querySelector("button").disabled = false; // keep it enabled if you want
+        alert("Thanks for contacting me! I will get back to you soon."); // popup
     })
-    .catch(error => console.error("Error!", error));
+    .catch(error => {
+        console.error("Error!", error);
+        alert("Oops! Something went wrong. Please try again.");
+    });
 });
 </script>
+
 
                </div>
 
